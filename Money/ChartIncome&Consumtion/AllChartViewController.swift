@@ -11,13 +11,13 @@ class AllChartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         pieView.isUserInteractionEnabled = false
+//        pieView.accessibilityScroll(.right)
         updateChartData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
         axisFormatDelegate = self
-        
         updateChartData()
     }
     
@@ -25,18 +25,17 @@ class AllChartViewController: UIViewController {
         var dataEnries: [BarChartDataEntry] = []
         var secDataEntrie: [BarChartDataEntry] = []
         let costCount = getCostCaunt()
-        var timeIntervalHell: TimeInterval?
+        var timeIntervalFirst: TimeInterval?
+        var timeIntervalSecond: TimeInterval?
+        var check = 0
         for i in 0..<costCount.count {
-            var check = 0
-            for j in 0..<costCount[i].check.count {
-                timeIntervalHell = costCount[i].check[j].date.timeIntervalSince1970
-                print(costCount[i].check[j].date)
-                check += costCount[i].check[j].suma
-            }
-            let dataEntry = BarChartDataEntry(x: Double(timeIntervalHell!), y: Double(check))
+            timeIntervalFirst = costCount[0].date.timeIntervalSince1970
+            check = costCount[i].suma
+            let dataEntry = BarChartDataEntry(x: Double(timeIntervalFirst!), y: Double(check))
             dataEnries.append(dataEntry)
-            
         }
+//            let dataEntry = BarChartDataEntry(x: Double(timeIntervalHell!), y: Double(check))
+//            dataEnries.append(dataEntry)
 //        let consCount = getConsumtionCount()
 //        for o in 0..<consCount.count {
 //            var consumtion = 0
@@ -53,14 +52,18 @@ class AllChartViewController: UIViewController {
 //        chartDataSet.colors = colors
         
         pieView.data = chartData
+        chartDataSet.colors = ChartColorTemplates.colorful()
         
         let xaxis = pieView.xAxis
+        xaxis.spaceMin = 10.0
+        xaxis.spaceMax = 5
+        xaxis.xOffset = 4.0
         xaxis.valueFormatter = axisFormatDelegate
     }
     
-    func getCostCaunt() -> Results<CategoryIncome> {
+    func getCostCaunt() -> Results<SumaIncome> {
         let realm = try! Realm()
-        return realm.objects(CategoryIncome.self)
+        return realm.objects(SumaIncome.self).sorted(byKeyPath: "date", ascending: true)
     }
     
     func getConsumtionCount() -> Results<CategoryConsumtion> {
@@ -73,7 +76,7 @@ class AllChartViewController: UIViewController {
 extension AllChartViewController: IAxisValueFormatter {
   func stringForValue(_ value: Double, axis: AxisBase?) -> String {
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "dd.MM"
+    dateFormatter.dateFormat = "dd.MM.yy"
     return dateFormatter.string(from: Date(timeIntervalSince1970: value))
   }
 }
