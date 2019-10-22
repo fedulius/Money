@@ -125,4 +125,5 @@ class persistanceIncome: MainViewController {
             realm.delete(check)
         }
     }
+    
 }

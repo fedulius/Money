@@ -265,7 +265,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ll-R9-naX">
                                 <rect key="frame" x="132" y="424" width="150" height="54"/>
-                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="LrI-ug-wf4"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="Qo9-qM-ebM"/>
@@ -509,10 +509,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jlk-eL-B8K" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="20" y="384" width="374" height="335"/>
+                                <rect key="frame" x="20" y="219" width="374" height="500"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="335" id="GV3-wg-lBR"/>
+                                    <constraint firstAttribute="height" constant="500" id="GV3-wg-lBR"/>
                                     <constraint firstAttribute="width" constant="374" id="VUA-aL-TAt"/>
                                 </constraints>
                             </view>
@@ -522,7 +522,6 @@
                             <constraint firstItem="JQw-wo-jEG" firstAttribute="bottom" secondItem="Jlk-eL-B8K" secondAttribute="bottom" constant="94" id="5L5-Jz-SbO"/>
                             <constraint firstItem="Jlk-eL-B8K" firstAttribute="leading" secondItem="JQw-wo-jEG" secondAttribute="leading" constant="20" id="Pay-Mg-crU"/>
                             <constraint firstItem="JQw-wo-jEG" firstAttribute="trailing" secondItem="Jlk-eL-B8K" secondAttribute="trailing" constant="20" id="aBk-7c-PNq"/>
-                            <constraint firstItem="Jlk-eL-B8K" firstAttribute="top" secondItem="JQw-wo-jEG" secondAttribute="top" constant="340" id="nWr-ur-bPM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JQw-wo-jEG"/>
                     </view>
