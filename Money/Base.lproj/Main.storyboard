@@ -516,12 +516,28 @@
                                     <constraint firstAttribute="width" constant="374" id="VUA-aL-TAt"/>
                                 </constraints>
                             </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="uPM-nq-gx7">
+                                <rect key="frame" x="20" y="139" width="374" height="32"/>
+                                <segments>
+                                    <segment title="Неделя"/>
+                                    <segment title="Месяц"/>
+                                    <segment title="Квартал"/>
+                                    <segment title="Всё время"/>
+                                </segments>
+                                <connections>
+                                    <action selector="changeSegment" destination="C1s-dS-4Ra" eventType="valueChanged" id="TJ7-Zg-hxi"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="JQw-wo-jEG" firstAttribute="bottom" secondItem="Jlk-eL-B8K" secondAttribute="bottom" constant="94" id="5L5-Jz-SbO"/>
                             <constraint firstItem="Jlk-eL-B8K" firstAttribute="leading" secondItem="JQw-wo-jEG" secondAttribute="leading" constant="20" id="Pay-Mg-crU"/>
+                            <constraint firstItem="Jlk-eL-B8K" firstAttribute="top" secondItem="uPM-nq-gx7" secondAttribute="bottom" constant="49" id="XEz-lF-K9a"/>
                             <constraint firstItem="JQw-wo-jEG" firstAttribute="trailing" secondItem="Jlk-eL-B8K" secondAttribute="trailing" constant="20" id="aBk-7c-PNq"/>
+                            <constraint firstItem="uPM-nq-gx7" firstAttribute="top" secondItem="JQw-wo-jEG" secondAttribute="top" constant="95" id="aey-fb-SRS"/>
+                            <constraint firstItem="uPM-nq-gx7" firstAttribute="leading" secondItem="JQw-wo-jEG" secondAttribute="leading" constant="20" id="ejm-EU-XfG"/>
+                            <constraint firstItem="JQw-wo-jEG" firstAttribute="trailing" secondItem="uPM-nq-gx7" secondAttribute="trailing" constant="20" id="zSu-35-zhk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JQw-wo-jEG"/>
                     </view>
@@ -529,6 +545,7 @@
                     <navigationItem key="navigationItem" id="VaG-Cd-R9U"/>
                     <connections>
                         <outlet property="pieView" destination="Jlk-eL-B8K" id="hSH-sf-NVl"/>
+                        <outlet property="timeSegmentController" destination="uPM-nq-gx7" id="JVA-4w-gjN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9mc-0L-amd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

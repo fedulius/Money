@@ -5,6 +5,7 @@ import RealmSwift
 class AllChartViewController: UIViewController {
 
     @IBOutlet weak var pieView: BarChartView!
+    @IBOutlet weak var timeSegmentController: UISegmentedControl!
     
      weak var axisFormatDelegate: IAxisValueFormatter?
     
@@ -18,76 +19,80 @@ class AllChartViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
         axisFormatDelegate = self
-        updateChartData()
+    }
+    
+    @IBAction func changeSegment() {
+        switch timeSegmentController.selectedSegmentIndex {
+        case 0:
+            updateChartData()
+        case 1:
+            print("Month")
+        case 2:
+            print("Hello world")
+        case 3:
+            print("Star Wars")
+        default:
+            break
+        }
     }
     
     func updateChartData() {
         var dataEnries: [BarChartDataEntry] = []
-//        var secDataEntrie: [BarChartDataEntry] = []
+        var secDataEntrie: [BarChartDataEntry] = []
         let costCount = getCostCaunt()
         let calendar = Calendar.current
-        var array: [Date] = []
         var check = 0
         let time: TimeInterval = costCount[0].date.timeIntervalSince1970
         for i in 0..<costCount.count {
-            let timeInterval = costCount[i].date.timeIntervalSince1970
-            let xValue = (timeInterval - time) / (3600 * 24)
-            print(xValue)
             let date = costCount[i].date
             let dateComp = calendar.dateComponents([.year, .month, .day], from: date)
             let dateNowComp = calendar.date(from: dateComp)
-    
+            let timeInterval = dateNowComp!.timeIntervalSince1970
+            let xValue = (timeInterval - time) / (3600 * 24)
             if i > 0 {
                 let date2 = costCount[i - 1].date
                 let dateComp2 = calendar.dateComponents([.year, .month, .day], from: date2)
                 let dateNowComp2 = calendar.date(from: dateComp2)
                 if dateNowComp == dateNowComp2 {
                     check += costCount[i].suma
-                    print("Check is \(check)")
-                    let dataEntry = BarChartDataEntry(x: Double(xValue), y: Double(check))
-                    dataEnries.append(dataEntry)
+                    if i < costCount.count - 1 {
+                        let tomorrow = costCount[i + 1].date
+                        let tomorrowComp = calendar.dateComponents([.year, .month, .day], from: tomorrow)
+                        let dateTomrrow = calendar.date(from: tomorrowComp)
+                        if dateNowComp != dateTomrrow {
+                            let dataEntry = BarChartDataEntry(x: Double(xValue), y: Double(check))
+                            dataEnries.append(dataEntry)
+                        }
+                    }
+                    else {
+                        let dataEntry = BarChartDataEntry(x: Double(xValue), y: Double(check))
+                        dataEnries.append(dataEntry)
+                    }
                 }
                 else {
                     check = 0
                     check += costCount[i].suma
-                    let dataEntry = BarChartDataEntry(x: Double(xValue), y: Double(check))
-                    dataEnries.append(dataEntry)
                 }
             }
             else {
                 check += costCount[i].suma
-                let dataEntry = BarChartDataEntry(x: Double(xValue), y: Double(check))
-                dataEnries.append(dataEntry)
             }
-            print("Дата - \(costCount[i].date) Сумма \(costCount[i].suma) i is \(i)")
         }
-        
-//            let dataEntry = BarChartDataEntry(x: Double(timeIntervalHell!), y: Double(check))
-//            dataEnries.append(dataEntry)
-//        let consCount = getConsumtionCount()
-//        for o in 0..<consCount.count {
-//            var consumtion = 0
-//            for p in 0..<consCount[o].money.count {
-//                consumtion += consCount[o].money[p].sumaConsumtion
-//            }
-//            let secDataEntry = BarChartDataEntry(x: Double(timeIntervalHell!), y: Double(consumtion))
-//            secDataEntrie.append(secDataEntry)
-//        }
+
         let chartDataSet = BarChartDataSet(entries: dataEnries, label: "Расход")
-//        let secChartDataSet = BarChartDataSet(entries: secDataEntrie, label: "Доход")
+        let secChartDataSet = BarChartDataSet(entries: secDataEntrie, label: "Доход")
         let chartData = BarChartData(dataSet: chartDataSet)
-//        let colors = [UIColor.yellow]
-//        chartDataSet.colors = colors
+        let colors = [UIColor.yellow]
+        chartDataSet.colors = colors
 //        chartDataSet.colors = ChartColorTemplates.colorful()
         
         let xaxis = pieView.xAxis
-        xaxis.spaceMin = 1.0
-        xaxis.spaceMax = 10
-        xaxis.xOffset = 4.0
+        xaxis.spaceMin = 1
+        xaxis.spaceMax = 2
         xaxis.valueFormatter = axisFormatDelegate
-        xaxis.drawLimitLinesBehindDataEnabled = true
+//        xaxis.drawLimitLinesBehindDataEnabled = true
         xaxis.granularityEnabled = true
-        xaxis.granularity = 0.5
+        xaxis.granularity = 1.0
         xaxis.labelPosition = .bottom
         xaxis.setLabelCount(7, force: true)
         
@@ -111,6 +116,7 @@ extension AllChartViewController: IAxisValueFormatter {
     let costCaunt = getCostCaunt()
     let refTime: TimeInterval = costCaunt[0].date.timeIntervalSince1970
     dateFormatter.dateFormat = "dd.MM"
-    return dateFormatter.string(from: Date(timeIntervalSince1970: value * 3600 * 24 + refTime))
+    let date = Date(timeIntervalSince1970: value * 3600 * 24 + refTime)
+    return dateFormatter.string(from: date)
   }
 }
