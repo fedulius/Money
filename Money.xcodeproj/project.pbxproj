@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,6 +20,7 @@
 		336F4B9C233393C400EF3DC4 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336F4B9B233393C400EF3DC4 /* MainTableViewCell.swift */; };
 		336F4B9E2333DB5400EF3DC4 /* addIncomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336F4B9D2333DB5400EF3DC4 /* addIncomeViewController.swift */; };
 		336F4BA02333DB9100EF3DC4 /* addIncomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336F4B9F2333DB9100EF3DC4 /* addIncomeCollectionViewCell.swift */; };
+		33843AA22363645900F52095 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33843AA12363645900F52095 /* Functions.swift */; };
 		339388F72354CCF800349C83 /* WalletUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339388F62354CCF800349C83 /* WalletUIViewController.swift */; };
 		339388F92354CD1700349C83 /* WalletsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339388F82354CD1700349C83 /* WalletsTableViewCell.swift */; };
 		33AC5BF02351159300EBEFE2 /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AC5BEF2351159300EBEFE2 /* WalletTableViewCell.swift */; };
@@ -46,6 +47,7 @@
 		336F4B9B233393C400EF3DC4 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		336F4B9D2333DB5400EF3DC4 /* addIncomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addIncomeViewController.swift; sourceTree = "<group>"; };
 		336F4B9F2333DB9100EF3DC4 /* addIncomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addIncomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		33843AA12363645900F52095 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		339388F62354CCF800349C83 /* WalletUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletUIViewController.swift; sourceTree = "<group>"; };
 		339388F82354CD1700349C83 /* WalletsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsTableViewCell.swift; sourceTree = "<group>"; };
 		33AC5BEF2351159300EBEFE2 /* WalletTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTableViewCell.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				33BFCFC8235755E3001CD70A /* AllChartViewController.swift */,
+				33843AA12363645900F52095 /* Functions.swift */,
 			);
 			path = "ChartIncome&Consumtion";
 			sourceTree = "<group>";
@@ -183,7 +186,6 @@
 				2D8C6E6CF7A313D464B5CF11 /* Pods-Money.debug.xcconfig */,
 				87E8F93DFD006FE8BB38286B /* Pods-Money.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -339,6 +341,7 @@
 				336F4B9C233393C400EF3DC4 /* MainTableViewCell.swift in Sources */,
 				339388F92354CD1700349C83 /* WalletsTableViewCell.swift in Sources */,
 				336F4B88233258DD00EF3DC4 /* AppDelegate.swift in Sources */,
+				33843AA22363645900F52095 /* Functions.swift in Sources */,
 				33AC5BF02351159300EBEFE2 /* WalletTableViewCell.swift in Sources */,
 				336F4B9E2333DB5400EF3DC4 /* addIncomeViewController.swift in Sources */,
 				339388F72354CCF800349C83 /* WalletUIViewController.swift in Sources */,
