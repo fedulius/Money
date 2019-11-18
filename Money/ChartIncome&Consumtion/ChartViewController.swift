@@ -4,6 +4,7 @@ import RealmSwift
 class ChartViewController: UIViewController {
 
     @IBOutlet var mainView: UIView!
+    @IBOutlet weak var chartView: UIView!
     
     private let dateLabelArray: [UILabel] = []
     
@@ -16,4 +17,10 @@ class ChartViewController: UIViewController {
         dateLabel.font = UIFont.systemFont(ofSize: 10)
         mainView.addSubview(dateLabel)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        chartView.setNeedsDisplay()
+    }
+    
 }

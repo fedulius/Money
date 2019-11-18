@@ -517,15 +517,18 @@
                                     <segment title="Всё время"/>
                                 </segments>
                             </segmentedControl>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tvc-AZ-W2e" customClass="Chart" customModule="Money" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tvc-AZ-W2e" customClass="Chart" customModule="Money" customModuleProvider="target">
                                 <rect key="frame" x="44" y="298" width="350" height="300"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="JQw-wo-jEG" firstAttribute="bottom" secondItem="tvc-AZ-W2e" secondAttribute="bottom" constant="215" id="0NY-Bh-X8l"/>
+                            <constraint firstItem="tvc-AZ-W2e" firstAttribute="top" secondItem="uPM-nq-gx7" secondAttribute="bottom" constant="128" id="Qfe-N8-GhJ"/>
                             <constraint firstItem="uPM-nq-gx7" firstAttribute="top" secondItem="JQw-wo-jEG" secondAttribute="top" constant="95" id="aey-fb-SRS"/>
+                            <constraint firstItem="tvc-AZ-W2e" firstAttribute="leading" secondItem="JQw-wo-jEG" secondAttribute="leading" constant="44" id="cJX-ar-uiZ"/>
+                            <constraint firstItem="JQw-wo-jEG" firstAttribute="trailing" secondItem="tvc-AZ-W2e" secondAttribute="trailing" constant="20" id="e7Z-T6-LG0"/>
                             <constraint firstItem="uPM-nq-gx7" firstAttribute="leading" secondItem="JQw-wo-jEG" secondAttribute="leading" constant="20" id="ejm-EU-XfG"/>
                             <constraint firstItem="JQw-wo-jEG" firstAttribute="trailing" secondItem="uPM-nq-gx7" secondAttribute="trailing" constant="20" id="zSu-35-zhk"/>
                         </constraints>
@@ -534,6 +537,7 @@
                     <tabBarItem key="tabBarItem" title="Item" id="NZr-LT-Rk2"/>
                     <navigationItem key="navigationItem" id="VaG-Cd-R9U"/>
                     <connections>
+                        <outlet property="chartView" destination="tvc-AZ-W2e" id="0nb-Jg-gQ9"/>
                         <outlet property="mainView" destination="hZh-DD-8hD" id="dk1-0t-AZP"/>
                     </connections>
                 </viewController>
