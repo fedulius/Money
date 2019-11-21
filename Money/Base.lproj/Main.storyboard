@@ -519,17 +519,20 @@
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tvc-AZ-W2e" customClass="Chart" customModule="Money" customModuleProvider="target">
                                 <rect key="frame" x="44" y="298" width="350" height="300"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" priority="750" constant="350" id="9FB-6A-7BO"/>
+                                    <constraint firstAttribute="height" constant="300" id="uX4-94-6q6"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="JQw-wo-jEG" firstAttribute="bottom" secondItem="tvc-AZ-W2e" secondAttribute="bottom" constant="215" id="0NY-Bh-X8l"/>
-                            <constraint firstItem="tvc-AZ-W2e" firstAttribute="top" secondItem="uPM-nq-gx7" secondAttribute="bottom" constant="128" id="Qfe-N8-GhJ"/>
+                            <constraint firstItem="JQw-wo-jEG" firstAttribute="trailing" secondItem="tvc-AZ-W2e" secondAttribute="trailing" constant="20" id="0DM-bM-Eu2"/>
+                            <constraint firstItem="tvc-AZ-W2e" firstAttribute="leading" secondItem="JQw-wo-jEG" secondAttribute="leading" constant="44" id="Oad-Vd-JQY"/>
                             <constraint firstItem="uPM-nq-gx7" firstAttribute="top" secondItem="JQw-wo-jEG" secondAttribute="top" constant="95" id="aey-fb-SRS"/>
-                            <constraint firstItem="tvc-AZ-W2e" firstAttribute="leading" secondItem="JQw-wo-jEG" secondAttribute="leading" constant="44" id="cJX-ar-uiZ"/>
-                            <constraint firstItem="JQw-wo-jEG" firstAttribute="trailing" secondItem="tvc-AZ-W2e" secondAttribute="trailing" constant="20" id="e7Z-T6-LG0"/>
                             <constraint firstItem="uPM-nq-gx7" firstAttribute="leading" secondItem="JQw-wo-jEG" secondAttribute="leading" constant="20" id="ejm-EU-XfG"/>
+                            <constraint firstItem="JQw-wo-jEG" firstAttribute="bottom" secondItem="tvc-AZ-W2e" secondAttribute="bottom" constant="215" id="scu-wy-RkL"/>
                             <constraint firstItem="JQw-wo-jEG" firstAttribute="trailing" secondItem="uPM-nq-gx7" secondAttribute="trailing" constant="20" id="zSu-35-zhk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JQw-wo-jEG"/>
