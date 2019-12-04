@@ -4,18 +4,190 @@ import RealmSwift
 class Chart: UIView {
     
     let calendar = Calendar.current
-    let date = Date()
         
+    let date = Date()
+    
+    var smth = 0
+    
+    let zero = UIView()
+    let one = UIView()
+    let two = UIView()
+    let three = UIView()
+    let four = UIView()
+    let five = UIView()
+    let six = UIView()
+    let seven = UIView()
+    
+    let zeroHor = UIView()
+    let oneHor = UIView()
+    let twoHor = UIView()
+    let threeHor = UIView()
+    let fourHor = UIView()
+    let fiveHor = UIView()
+    let sixHor = UIView()
+    let sevenHor = UIView()
+
     override func layoutSubviews() {
         super.layoutSubviews()
-        updateBackground()
     }
     
     override func draw(_ rect: CGRect) {
-        drawWeek()
+        if smth == 0 {
+            updateBackgroundForWeek()
+            drawWeek()
+        }
+        else if smth == 1 {
+            updateBackgroundForMonth()
+            drawMonth()
+        }
+        else {
+            return
+        }
     }
     
-    func drawWeek(){
+    func updateBackgroundForMonth() {
+        //vertical
+        let verticalView = [zero, one, two, three, four, five]
+        six.frame = CGRect(x: 0, y: 0, width: 0.5, height: self.bounds.height)
+        
+        for i in 0..<verticalView.count {
+            let ix = i * 70
+            verticalView[i].frame = CGRect(x: CGFloat(ix), y: 0, width: 0.5, height: self.bounds.height)
+            verticalView[i].backgroundColor = .gray
+            self.addSubview(verticalView[i])
+        }
+        
+        //horizontal
+        let horizontalView = [zeroHor, oneHor, twoHor, threeHor, fourHor, fiveHor]
+        
+        for i in 0..<horizontalView.count {
+            let iy = i * 60
+            horizontalView[i].frame = CGRect(x: 0, y: CGFloat(iy), width: self.bounds.width, height: 0.5)
+            horizontalView[i].backgroundColor = .gray
+            self.addSubview(horizontalView[i])
+        }
+    }
+    
+    func drawMonth() {
+        //здесь начинается какая то хрень с датами в которую лучше не вникать
+        let format = DateFormatter()
+        format.dateFormat = "dd.MM"
+        var count = 0
+                
+        var firstComponentsDate = calendar.dateComponents([.year, .month, .day, .weekOfMonth], from: date)
+        firstComponentsDate.day = 1
+        let firstDate = calendar.date(from: firstComponentsDate)
+                
+        var lastComponentDate = calendar.dateComponents([.year, .month, .day, .weekOfMonth], from: date)
+        lastComponentDate.day = 1
+        lastComponentDate.month? += 1
+        count = lastComponentDate.day!
+        let lastDate = calendar.date(from: lastComponentDate)
+        
+        let daysInMonth = Int((lastDate?.timeIntervalSince(firstDate!))! / 60 / 60 / 24)
+        
+        var counter = calendar.dateComponents([.year, .month, .weekOfMonth], from: date)
+        counter.day = daysInMonth
+        let dateForKnew = calendar.date(from: counter)
+        let check = calendar.dateComponents([.year, .month, .day, .weekOfMonth], from: dateForKnew!)
+        count = check.weekOfMonth!
+        //здесь она заканчивается
+        
+        var arrayForIncome: [Int] = []
+        var arrayForFillIncome: [Int] = []
+        
+        var arrayForCome: [Int] = []
+        var arrayForFillCome: [Int] = []
+        
+        let incomeDateArray = doIncomeArray(&arrayForIncome)
+        let comeDateArray = doConsumptionArray(&arrayForCome)
+        
+        var iy = 0
+        
+        let height = self.bounds.height
+        let width = self.bounds.width
+        
+        guard let incMax = arrayForIncome.max() else { return }
+        guard let consMax = arrayForCome.max() else { return }
+        
+        if incMax > consMax {
+            iy = incMax / Int(height)
+        }
+        else if consMax > incMax {
+            iy = consMax / Int(height)
+        }
+        else {
+            iy = incMax / Int(height)
+        }
+                        
+        for i in 0..<count {
+            var variable = 0
+            var component = calendar.dateComponents([.year, .month, .weekOfMonth], from: firstDate!)
+            component.weekOfMonth! += i
+            for j in 0..<incomeDateArray.count {
+                let checlDate = calendar.dateComponents([.year, .month, .weekOfMonth], from: incomeDateArray[j])
+                if checlDate == component {
+                    variable += arrayForIncome[j]
+                }
+            }
+            arrayForFillIncome.append(variable)
+        }
+        
+        let zeroInc = CGPoint(x: 0, y: 300)
+        let oneInc = CGPoint(x: 70, y: Int(height) - arrayForFillIncome[0] / iy)
+        let twoInc = CGPoint(x: 140, y: Int(height) - arrayForFillIncome[1] / iy)
+        let threeInc = CGPoint(x: 210, y: Int(height) - arrayForFillIncome[2] / iy)
+        let fourInc = CGPoint(x: 280, y: Int(height) - arrayForFillIncome[3] / iy)
+        let fiveInc = CGPoint(x: 350, y: Int(height) - arrayForFillIncome[4] / iy)
+        
+        let chartLineInc = UIBezierPath()
+        chartLineInc.move(to: zeroInc)
+        
+        for i in [oneInc, twoInc, threeInc, fourInc, fiveInc] {
+            chartLineInc.addLine(to: i)
+        }
+        let color = UIColor.red
+        color.setStroke()
+        
+        chartLineInc.lineWidth = 2.0
+        chartLineInc.stroke()
+        
+        for i in 0..<count {
+            var variable = 0
+            var component = calendar.dateComponents([.year, .month, .weekOfMonth], from: firstDate!)
+            component.weekOfMonth! += i
+            for j in 0..<comeDateArray.count {
+                let checlDate = calendar.dateComponents([.year, .month, .weekOfMonth], from: comeDateArray[j])
+                if checlDate == component {
+                    variable += arrayForCome[j]
+                }
+            }
+            arrayForFillCome.append(variable)
+        }
+        
+        let zeroCome = CGPoint(x: 0, y: 300)
+        let oneCome = CGPoint(x: 70, y: Int(height) - arrayForFillCome[0] / iy)
+        let twoCome = CGPoint(x: 140, y: Int(height) - arrayForFillCome[1] / iy)
+        let threeCome = CGPoint(x: 210, y: Int(height) - arrayForFillCome[2] / iy)
+        let fourCome = CGPoint(x: 280, y: Int(height) - arrayForFillCome[3] / iy)
+        let fiveCome = CGPoint(x: 350, y: Int(height) - arrayForFillCome[4] / iy)
+        
+        let chartLineCome = UIBezierPath()
+        chartLineCome.move(to: zeroCome)
+        
+        for i in [oneCome, twoCome, threeCome, fourCome, fiveCome] {
+            chartLineCome.addLine(to: i)
+        }
+        let colorCome = UIColor.blue
+        colorCome.setStroke()
+        
+        chartLineCome.lineWidth = 2.0
+        chartLineCome.stroke()
+    }
+    
+    
+        
+    func drawWeek() {
         var arrayForIncome: [Int] = []
         var arrayForFillIncome: [Int] = []
         
@@ -81,7 +253,6 @@ class Chart: UIView {
         
         chartLineInc.lineWidth = 2.0
         chartLineInc.stroke()
-//        let format = DateFormatter()
         var count = 0
         
         for i in 0..<8 {
@@ -130,11 +301,11 @@ class Chart: UIView {
 
         for i in 0..<consumtion.count {
             let currentDate = consumtion[i].date
-            let dateComponent = calendar.dateComponents([.year, .month, .day], from: currentDate)
+            let dateComponent = calendar.dateComponents([.year, .month, .day, .weekOfMonth], from: currentDate)
             let dateFromComponent = calendar.date(from: dateComponent)
             if i > 0 {
                 let yesterday = consumtion[i - 1].date
-                let yesterdayComponent = calendar.dateComponents([.year, .month, .day], from: yesterday)
+                let yesterdayComponent = calendar.dateComponents([.year, .month, .day, .weekOfMonth], from: yesterday)
                 let yesterdayAsDate = calendar.date(from: yesterdayComponent)
                 if dateFromComponent == yesterdayAsDate && i < consumtion.count - 1 {
                     come += consumtion[i].sumaConsumtion
@@ -173,11 +344,11 @@ class Chart: UIView {
         
         for i in 0..<income.count {
             let currentDate = income[i].date
-            let dateComponent = calendar.dateComponents([.year, .month, .day], from: currentDate)
+            let dateComponent = calendar.dateComponents([.year, .month, .day, .weekOfMonth], from: currentDate)
             let dateFromComponent = calendar.date(from: dateComponent)
             if i > 0 {
                 let yesterday = income[i - 1].date
-                let yesterdayComponent = calendar.dateComponents([.year, .month, .day], from: yesterday)
+                let yesterdayComponent = calendar.dateComponents([.year, .month, .day, .weekOfMonth], from: yesterday)
                 let yesterdayAsDate = calendar.date(from: yesterdayComponent)
                 if dateFromComponent == yesterdayAsDate && i < income.count - 1 {
                     variable += income[i].suma
@@ -209,17 +380,8 @@ class Chart: UIView {
         return arrayForIncomeDate
     }
     
-    func updateBackground() {
+    func updateBackgroundForWeek() {
         // vertical
-        let zero = UIView()
-        let one = UIView()
-        let two = UIView()
-        let three = UIView()
-        let four = UIView()
-        let five = UIView()
-        let six = UIView()
-        let seven = UIView()
-        
         let viewsArray: [UIView] = [zero, one, two, three, four, five, six, seven]
         for i in 0..<viewsArray.count {
             let j = i * 50
@@ -229,14 +391,6 @@ class Chart: UIView {
         }
         
         //horizontal
-        let zeroHor = UIView()
-        let oneHor = UIView()
-        let twoHor = UIView()
-        let threeHor = UIView()
-        let fourHor = UIView()
-        let fiveHor = UIView()
-        let sixHor = UIView()
-        
         let viewsHorizontalArray: [UIView] = [zeroHor, oneHor, twoHor, threeHor, fourHor, fiveHor, sixHor]
         for i in 0..<viewsHorizontalArray.count {
             let j = i * 50

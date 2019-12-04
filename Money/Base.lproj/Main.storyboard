@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -516,23 +516,23 @@
                                     <segment title="Квартал"/>
                                     <segment title="Всё время"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentController:" destination="C1s-dS-4Ra" eventType="valueChanged" id="XVD-eg-KvZ"/>
+                                </connections>
                             </segmentedControl>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tvc-AZ-W2e" customClass="Chart" customModule="Money" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ei-OW-dRE" customClass="Chart" customModule="Money" customModuleProvider="target">
                                 <rect key="frame" x="44" y="298" width="350" height="300"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" priority="750" constant="350" id="9FB-6A-7BO"/>
-                                    <constraint firstAttribute="height" constant="300" id="uX4-94-6q6"/>
-                                </constraints>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="JQw-wo-jEG" firstAttribute="trailing" secondItem="tvc-AZ-W2e" secondAttribute="trailing" constant="20" id="0DM-bM-Eu2"/>
-                            <constraint firstItem="tvc-AZ-W2e" firstAttribute="leading" secondItem="JQw-wo-jEG" secondAttribute="leading" constant="44" id="Oad-Vd-JQY"/>
+                            <constraint firstItem="JQw-wo-jEG" firstAttribute="trailing" secondItem="7ei-OW-dRE" secondAttribute="trailing" constant="20" id="8Yq-NP-kcp"/>
+                            <constraint firstItem="JQw-wo-jEG" firstAttribute="bottom" secondItem="7ei-OW-dRE" secondAttribute="bottom" constant="215" id="Mpl-i6-bSv"/>
                             <constraint firstItem="uPM-nq-gx7" firstAttribute="top" secondItem="JQw-wo-jEG" secondAttribute="top" constant="95" id="aey-fb-SRS"/>
+                            <constraint firstItem="7ei-OW-dRE" firstAttribute="top" secondItem="uPM-nq-gx7" secondAttribute="bottom" constant="128" id="ehr-Ms-Rdh"/>
                             <constraint firstItem="uPM-nq-gx7" firstAttribute="leading" secondItem="JQw-wo-jEG" secondAttribute="leading" constant="20" id="ejm-EU-XfG"/>
-                            <constraint firstItem="JQw-wo-jEG" firstAttribute="bottom" secondItem="tvc-AZ-W2e" secondAttribute="bottom" constant="215" id="scu-wy-RkL"/>
+                            <constraint firstItem="7ei-OW-dRE" firstAttribute="leading" secondItem="JQw-wo-jEG" secondAttribute="leading" constant="44" id="j9l-AR-m32"/>
                             <constraint firstItem="JQw-wo-jEG" firstAttribute="trailing" secondItem="uPM-nq-gx7" secondAttribute="trailing" constant="20" id="zSu-35-zhk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JQw-wo-jEG"/>
@@ -540,13 +540,14 @@
                     <tabBarItem key="tabBarItem" title="Item" id="NZr-LT-Rk2"/>
                     <navigationItem key="navigationItem" id="VaG-Cd-R9U"/>
                     <connections>
-                        <outlet property="chartView" destination="tvc-AZ-W2e" id="0nb-Jg-gQ9"/>
                         <outlet property="mainView" destination="hZh-DD-8hD" id="dk1-0t-AZP"/>
+                        <outlet property="segmentedControl" destination="uPM-nq-gx7" id="FeQ-IO-dNt"/>
+                        <outlet property="viewForChart" destination="7ei-OW-dRE" id="cp6-Hf-9x5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9mc-0L-amd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1048" y="858"/>
+            <point key="canvasLocation" x="1048" y="856"/>
         </scene>
         <!--Баланс-->
         <scene sceneID="noN-WR-O3j">

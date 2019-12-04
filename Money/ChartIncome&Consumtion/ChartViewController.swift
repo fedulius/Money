@@ -4,12 +4,41 @@ import RealmSwift
 class ChartViewController: UIViewController {
 
     @IBOutlet var mainView: UIView!
+        
+    var choosenSeg = 0
     
-    @IBOutlet weak var chartView: UIView!
+    var chart = Chart()
     
+    @IBOutlet weak var viewForChart: Chart!
+    
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+            
     private let dateLabelArray: [UILabel] = []
     
     let date = Date()
+    
+    @IBAction func segmentController(_ sender: Any) {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            choosenSeg = segmentedControl.selectedSegmentIndex
+            viewForChart.smth = choosenSeg
+            viewForChart.setNeedsDisplay()
+        case 1:
+            choosenSeg = segmentedControl.selectedSegmentIndex
+            viewForChart.smth = choosenSeg
+            viewForChart.setNeedsDisplay()
+        case 2:
+            choosenSeg = segmentedControl.selectedSegmentIndex
+            viewForChart.smth = choosenSeg
+            viewForChart.setNeedsDisplay()
+        case 3:
+            choosenSeg = segmentedControl.selectedSegmentIndex
+            viewForChart.smth = choosenSeg
+            viewForChart.setNeedsDisplay()
+       default:
+            break
+        }
+    }
     
     let dateLabel = UILabel()
     let secondDateLabel = UILabel()
@@ -34,7 +63,7 @@ class ChartViewController: UIViewController {
         fifthDateLabel.frame = CGRect(x: 235, y: 600, width: 200, height: 25)
         sixthDateLabel.frame = CGRect(x: 285, y: 600, width: 200, height: 25)
         seventhDateLabel.frame = CGRect(x: 335, y: 600, width: 200, height: 25)
-        eighthDateLabel.frame = CGRect(x: 385, y: 600, width: 200, height: 25)
+        eighthDateLabel.frame = CGRect(x: 385, y: 600, width: 200, height: 25) 
        
         for (index, i) in [eighthDateLabel, seventhDateLabel, sixthDateLabel, fifthDateLabel, fourthDateLabel, thirdDateLabel, secondDateLabel, dateLabel].enumerated() {
             
@@ -51,6 +80,6 @@ class ChartViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        chartView.setNeedsDisplay()
+        viewForChart.setNeedsDisplay()
     }
 }
