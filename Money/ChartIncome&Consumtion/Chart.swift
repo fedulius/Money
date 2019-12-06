@@ -40,10 +40,233 @@ class Chart: UIView {
             updateBackgroundForMonth()
             drawMonth()
         }
+        else if smth == 2 {
+            updateBackgroundForQurter()
+            drawQarter()
+        }
+        else if smth == 3 {
+            updateBackgroundForWeek()
+            drawAllTime()
+        }
         else {
             return
         }
     }
+    
+    func drawAllTime() {
+        var arrayForCome: [Int] = []
+        var arrayForFillCome: [Int] = []
+        
+        var arrayForIncome: [Int] = []
+        var arrayForFillIncome: [Int] = []
+        
+        let dateArrayIncome = doIncomeArray(&arrayForIncome)
+        let dateArrayForCome = doConsumptionArray(&arrayForCome)
+        
+        var count = 0
+        
+        for i in 0..<8 {
+            var component = calendar.dateComponents([.year, .month], from: Date())
+            component.month! -= i
+            for j in 0..<dateArrayIncome.count {
+                let arrayComp = calendar.dateComponents([.year, .month], from: dateArrayIncome[j])
+                if arrayComp == component {
+                    count += arrayForIncome[j]
+                }
+            }
+            arrayForFillIncome.append(count)
+            count = 0
+        }
+        
+        for i in 0..<8 {
+            var component = calendar.dateComponents([.year, .month], from: Date())
+            component.month! -= i
+            for j in 0..<dateArrayForCome.count {
+                let arrayComp = calendar.dateComponents([.year, .month], from: dateArrayForCome[j])
+                if arrayComp == component {
+                    count += arrayForCome[j]
+                }
+            }
+            arrayForFillCome.append(count)
+            count = 0
+        }
+        
+        var iy = 0
+        let height = self.bounds.height
+                
+        guard let incMax = arrayForFillIncome.max() else { return }
+        guard let consMax = arrayForFillCome.max() else { return }
+        
+        if incMax > consMax {
+            iy = incMax / Int(height)
+        }
+        else if consMax > incMax {
+            iy = consMax / Int(height)
+        }
+        else {
+            iy = incMax / Int(height)
+        }
+        
+        let zeroInc = CGPoint(x: 0, y: Int(height) - arrayForFillIncome[7] / iy)
+        let firstInc = CGPoint(x: 50, y: Int(height) - arrayForFillIncome[6] / iy)
+        let secondInc = CGPoint(x: 100, y: Int(height) - arrayForFillIncome[5] / iy)
+        let thirdInc = CGPoint(x: 150, y: Int(height) - arrayForFillIncome[4] / iy)
+        let fourthInc = CGPoint(x: 200, y: Int(height) - arrayForFillIncome[3] / iy)
+        let fifthInc = CGPoint(x: 250, y: Int(height) - arrayForFillIncome[2] / iy)
+        let sixthInc = CGPoint(x: 300, y: Int(height) - arrayForFillIncome[1] / iy)
+        let seventhInc = CGPoint(x: 350, y: Int(height) - arrayForFillIncome[0] / iy)
+        
+        let chartLineInc = UIBezierPath()
+        
+        chartLineInc.move(to: zeroInc)
+        
+        for i in [firstInc, secondInc, thirdInc, fourthInc, fifthInc, sixthInc, seventhInc] {
+            
+            chartLineInc.addLine(to: i)
+        }
+        
+        let colorInc = UIColor.red
+        colorInc.setStroke()
+        
+        chartLineInc.lineWidth = 2.0
+        chartLineInc.stroke()
+        
+        let zeroCons = CGPoint(x: 0, y: Int(height) - arrayForFillCome[7] / iy)
+        let firstCons = CGPoint(x: 50, y: Int(height) - arrayForFillCome[6] / iy)
+        let secondCons = CGPoint(x: 100, y: Int(height) - arrayForFillCome[5] / iy)
+        let thirdCons = CGPoint(x: 150, y: Int(height) - arrayForFillCome[4] / iy)
+        let fourthCons = CGPoint(x: 200, y: Int(height) - arrayForFillCome[3] / iy)
+        let fifthCons = CGPoint(x: 250, y: Int(height) - arrayForFillCome[2] / iy)
+        let sixthCons = CGPoint(x: 300, y: Int(height) - arrayForFillCome[1] / iy)
+        let seventhCons = CGPoint(x: 350, y: Int(height) - arrayForFillCome[0] / iy)
+        
+        let chartLineCons = UIBezierPath()
+        
+        chartLineCons.move(to: zeroCons)
+        
+        for i in [firstCons, secondCons, thirdCons, fourthCons, fifthCons, sixthCons, seventhCons] {
+            chartLineCons.addLine(to: i)
+        }
+        
+        let colorCons = UIColor.blue
+        colorCons.setStroke()
+        
+        chartLineCons.lineWidth = 2.0
+        chartLineCons.stroke()
+        
+    }
+    
+    func updateBackgroundForQurter() {
+//        vertical
+        let vetrticalView = [zero, one, two, three, four]
+        let lostViews = [five, six, seven]
+        for i in 0..<vetrticalView.count {
+            let ix = Double(i) * 87.5
+            vetrticalView[i].frame = CGRect(x: CGFloat(ix), y: 0, width: 0.5, height: self.bounds.height)
+            vetrticalView[i].backgroundColor = .gray
+            self.addSubview(vetrticalView[i])
+        }
+        for l in 0..<lostViews.count {
+            lostViews[l].backgroundColor = .white
+        }
+    }
+    
+    func drawQarter() {
+        var arrayForCome: [Int] = []
+        var arrayForFillCome: [Int] = []
+        
+        var arrayForIncome: [Int] = []
+        var arrayForFillIncome: [Int] = []
+        
+        let incomeDateArray = doIncomeArray(&arrayForIncome)
+        let comeDateArray = doConsumptionArray(&arrayForCome)
+        
+        var variable = 0
+        
+        for i in 1..<13 {
+            var componentCurrently = calendar.dateComponents([.year, .month], from: Date())
+            componentCurrently.month = i
+            for j in 0..<incomeDateArray.count {
+                let componentAllIncome = calendar.dateComponents([.year, .month], from: incomeDateArray[j])
+                if componentAllIncome == componentCurrently {
+                    variable += arrayForIncome[j]
+                }
+            }
+            if i % 3 == 0 {
+                arrayForFillIncome.append(variable)
+                variable = 0
+            }
+        }
+        
+        for i in 1..<13 {
+            var componentCurrently = calendar.dateComponents([.year, .month], from: Date())
+            componentCurrently.month = i
+            for j in 0..<comeDateArray.count {
+                let componentAllCome = calendar.dateComponents([.year, .month], from: comeDateArray[j])
+                if componentAllCome == componentCurrently {
+                    variable += arrayForCome[j]
+                }
+            }
+            if i % 3 == 0 {
+                arrayForFillCome.append(variable)
+                variable = 0
+            }
+        }
+        
+        var iy = 0
+        
+        let height = self.bounds.height
+        
+        guard let incMax = arrayForFillIncome.max() else { return }
+        guard let consMax = arrayForFillCome.max() else { return }
+        
+        if incMax > consMax {
+            iy = incMax / Int(height)
+        }
+        else if consMax > incMax {
+            iy = consMax / Int(height)
+        }
+        else {
+            iy = incMax / Int(height)
+        }
+        
+        let zeroInc = CGPoint(x: 0, y: 300)
+        let oneInc = CGPoint(x: 87, y: Int(height) - arrayForFillIncome[0] / iy)
+        let twoInc = CGPoint(x: 175, y: Int(height) - arrayForFillIncome[1] / iy)
+        let threeInc = CGPoint(x: 262, y: Int(height) - arrayForFillIncome[2] / iy)
+        let fourInc = CGPoint(x: 350, y: Int(height) - arrayForFillIncome[3] / iy)
+        
+        let chartLineInc = UIBezierPath()
+        chartLineInc.move(to: zeroInc)
+        
+        for i in [oneInc, twoInc, threeInc, fourInc] {
+            chartLineInc.addLine(to: i)
+        }
+        let color = UIColor.red
+        color.setStroke()
+        
+        chartLineInc.lineWidth = 2.0
+        chartLineInc.stroke()
+        
+        let zeroCome = CGPoint(x: 0, y: 300)
+        let oneCome = CGPoint(x: 87, y: Int(height) - arrayForFillCome[0] / iy)
+        let twoCome = CGPoint(x: 175, y: Int(height) - arrayForFillCome[1] / iy)
+        let threeCome = CGPoint(x: 262, y: Int(height) - arrayForFillCome[2] / iy)
+        let fourCome = CGPoint(x: 350, y: Int(height) - arrayForFillCome[3] / iy)
+        
+        let chartLineCome = UIBezierPath()
+        chartLineCome.move(to: zeroCome)
+        
+        for i in [oneCome, twoCome, threeCome, fourCome] {
+            chartLineCome.addLine(to: i)
+        }
+        let colorCome = UIColor.blue
+        colorCome.setStroke()
+        
+        chartLineCome.lineWidth = 2.0
+        chartLineCome.stroke()
+    }
+    
     
     func updateBackgroundForMonth() {
         //vertical
@@ -70,8 +293,6 @@ class Chart: UIView {
     
     func drawMonth() {
         //здесь начинается какая то хрень с датами в которую лучше не вникать
-        let format = DateFormatter()
-        format.dateFormat = "dd.MM"
         var count = 0
                 
         var firstComponentsDate = calendar.dateComponents([.year, .month, .day, .weekOfMonth], from: date)
@@ -105,7 +326,6 @@ class Chart: UIView {
         var iy = 0
         
         let height = self.bounds.height
-        let width = self.bounds.width
         
         guard let incMax = arrayForIncome.max() else { return }
         guard let consMax = arrayForCome.max() else { return }

@@ -523,12 +523,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ei-OW-dRE" customClass="Chart" customModule="Money" customModuleProvider="target">
                                 <rect key="frame" x="44" y="298" width="350" height="300"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="350" id="1U9-Mk-Rfm"/>
+                                    <constraint firstAttribute="height" constant="300" id="VEo-GI-E4F"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="JQw-wo-jEG" firstAttribute="trailing" secondItem="7ei-OW-dRE" secondAttribute="trailing" constant="20" id="8Yq-NP-kcp"/>
-                            <constraint firstItem="JQw-wo-jEG" firstAttribute="bottom" secondItem="7ei-OW-dRE" secondAttribute="bottom" constant="215" id="Mpl-i6-bSv"/>
                             <constraint firstItem="uPM-nq-gx7" firstAttribute="top" secondItem="JQw-wo-jEG" secondAttribute="top" constant="95" id="aey-fb-SRS"/>
                             <constraint firstItem="7ei-OW-dRE" firstAttribute="top" secondItem="uPM-nq-gx7" secondAttribute="bottom" constant="128" id="ehr-Ms-Rdh"/>
                             <constraint firstItem="uPM-nq-gx7" firstAttribute="leading" secondItem="JQw-wo-jEG" secondAttribute="leading" constant="20" id="ejm-EU-XfG"/>
