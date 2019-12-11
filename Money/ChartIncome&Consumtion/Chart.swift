@@ -4,7 +4,7 @@ import RealmSwift
 class Chart: UIView {
     
     let calendar = Calendar.current
-        
+    
     let date = Date()
     
     var smth = 0
