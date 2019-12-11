@@ -93,6 +93,8 @@ class Chart: UIView {
         
         var iy = 0
         let height = self.bounds.height
+        let width = self.bounds.width
+        let step = Int(width) / 7
                 
         guard let incMax = arrayForFillIncome.max() else { return }
         guard let consMax = arrayForFillCome.max() else { return }
@@ -108,13 +110,13 @@ class Chart: UIView {
         }
         
         let zeroInc = CGPoint(x: 0, y: Int(height) - arrayForFillIncome[7] / iy)
-        let firstInc = CGPoint(x: 50, y: Int(height) - arrayForFillIncome[6] / iy)
-        let secondInc = CGPoint(x: 100, y: Int(height) - arrayForFillIncome[5] / iy)
-        let thirdInc = CGPoint(x: 150, y: Int(height) - arrayForFillIncome[4] / iy)
-        let fourthInc = CGPoint(x: 200, y: Int(height) - arrayForFillIncome[3] / iy)
-        let fifthInc = CGPoint(x: 250, y: Int(height) - arrayForFillIncome[2] / iy)
-        let sixthInc = CGPoint(x: 300, y: Int(height) - arrayForFillIncome[1] / iy)
-        let seventhInc = CGPoint(x: 350, y: Int(height) - arrayForFillIncome[0] / iy)
+        let firstInc = CGPoint(x: step * 1, y: Int(height) - arrayForFillIncome[6] / iy)
+        let secondInc = CGPoint(x: step * 2, y: Int(height) - arrayForFillIncome[5] / iy)
+        let thirdInc = CGPoint(x: step * 3, y: Int(height) - arrayForFillIncome[4] / iy)
+        let fourthInc = CGPoint(x: step * 4, y: Int(height) - arrayForFillIncome[3] / iy)
+        let fifthInc = CGPoint(x: step * 5, y: Int(height) - arrayForFillIncome[2] / iy)
+        let sixthInc = CGPoint(x: step * 6, y: Int(height) - arrayForFillIncome[1] / iy)
+        let seventhInc = CGPoint(x: step * 7, y: Int(height) - arrayForFillIncome[0] / iy)
         
         let chartLineInc = UIBezierPath()
         
@@ -132,13 +134,13 @@ class Chart: UIView {
         chartLineInc.stroke()
         
         let zeroCons = CGPoint(x: 0, y: Int(height) - arrayForFillCome[7] / iy)
-        let firstCons = CGPoint(x: 50, y: Int(height) - arrayForFillCome[6] / iy)
-        let secondCons = CGPoint(x: 100, y: Int(height) - arrayForFillCome[5] / iy)
-        let thirdCons = CGPoint(x: 150, y: Int(height) - arrayForFillCome[4] / iy)
-        let fourthCons = CGPoint(x: 200, y: Int(height) - arrayForFillCome[3] / iy)
-        let fifthCons = CGPoint(x: 250, y: Int(height) - arrayForFillCome[2] / iy)
-        let sixthCons = CGPoint(x: 300, y: Int(height) - arrayForFillCome[1] / iy)
-        let seventhCons = CGPoint(x: 350, y: Int(height) - arrayForFillCome[0] / iy)
+        let firstCons = CGPoint(x: step * 1, y: Int(height) - arrayForFillCome[6] / iy)
+        let secondCons = CGPoint(x: step * 2, y: Int(height) - arrayForFillCome[5] / iy)
+        let thirdCons = CGPoint(x: step * 3, y: Int(height) - arrayForFillCome[4] / iy)
+        let fourthCons = CGPoint(x: step * 4, y: Int(height) - arrayForFillCome[3] / iy)
+        let fifthCons = CGPoint(x: step * 5, y: Int(height) - arrayForFillCome[2] / iy)
+        let sixthCons = CGPoint(x: step * 6, y: Int(height) - arrayForFillCome[1] / iy)
+        let seventhCons = CGPoint(x: step * 7, y: Int(height) - arrayForFillCome[0] / iy)
         
         let chartLineCons = UIBezierPath()
         
@@ -157,12 +159,15 @@ class Chart: UIView {
     }
     
     func updateBackgroundForQurter() {
+        let width = self.bounds.width
+        let height = self.bounds.height
 //        vertical
         let vetrticalView = [zero, one, two, three, four]
+        let step = Double(width) / Double(vetrticalView.count - 1)
         let lostViews = [five, six, seven]
         for i in 0..<vetrticalView.count {
-            let ix = Double(i) * 87.5
-            vetrticalView[i].frame = CGRect(x: CGFloat(ix), y: 0, width: 0.5, height: self.bounds.height)
+            let ix = Double(i) * step
+            vetrticalView[i].frame = CGRect(x: CGFloat(ix), y: 0, width: 0.5, height: height)
             vetrticalView[i].backgroundColor = .gray
             self.addSubview(vetrticalView[i])
         }
@@ -216,6 +221,8 @@ class Chart: UIView {
         var iy = 0
         
         let height = self.bounds.height
+        let width = self.bounds.width
+        let step = Int(width) / 4
         
         guard let incMax = arrayForFillIncome.max() else { return }
         guard let consMax = arrayForFillCome.max() else { return }
@@ -231,10 +238,10 @@ class Chart: UIView {
         }
         
         let zeroInc = CGPoint(x: 0, y: 300)
-        let oneInc = CGPoint(x: 87, y: Int(height) - arrayForFillIncome[0] / iy)
-        let twoInc = CGPoint(x: 175, y: Int(height) - arrayForFillIncome[1] / iy)
-        let threeInc = CGPoint(x: 262, y: Int(height) - arrayForFillIncome[2] / iy)
-        let fourInc = CGPoint(x: 350, y: Int(height) - arrayForFillIncome[3] / iy)
+        let oneInc = CGPoint(x: step * 1, y: Int(height) - arrayForFillIncome[0] / iy)
+        let twoInc = CGPoint(x: step * 2, y: Int(height) - arrayForFillIncome[1] / iy)
+        let threeInc = CGPoint(x: step * 3, y: Int(height) - arrayForFillIncome[2] / iy)
+        let fourInc = CGPoint(x: step * 4, y: Int(height) - arrayForFillIncome[3] / iy)
         
         let chartLineInc = UIBezierPath()
         chartLineInc.move(to: zeroInc)
@@ -249,10 +256,10 @@ class Chart: UIView {
         chartLineInc.stroke()
         
         let zeroCome = CGPoint(x: 0, y: 300)
-        let oneCome = CGPoint(x: 87, y: Int(height) - arrayForFillCome[0] / iy)
-        let twoCome = CGPoint(x: 175, y: Int(height) - arrayForFillCome[1] / iy)
-        let threeCome = CGPoint(x: 262, y: Int(height) - arrayForFillCome[2] / iy)
-        let fourCome = CGPoint(x: 350, y: Int(height) - arrayForFillCome[3] / iy)
+        let oneCome = CGPoint(x: step * 1, y: Int(height) - arrayForFillCome[0] / iy)
+        let twoCome = CGPoint(x: step * 2, y: Int(height) - arrayForFillCome[1] / iy)
+        let threeCome = CGPoint(x: step * 3, y: Int(height) - arrayForFillCome[2] / iy)
+        let fourCome = CGPoint(x: step * 4, y: Int(height) - arrayForFillCome[3] / iy)
         
         let chartLineCome = UIBezierPath()
         chartLineCome.move(to: zeroCome)
@@ -269,23 +276,26 @@ class Chart: UIView {
     
     
     func updateBackgroundForMonth() {
+        let width = self.bounds.width
+        let height = self.bounds.height
         //vertical
         let verticalView = [zero, one, two, three, four, five]
-        six.frame = CGRect(x: 0, y: 0, width: 0.5, height: self.bounds.height)
-        
+        six.backgroundColor = .white
+        seven.backgroundColor = .white
+        let stepVert = Int(width) / (verticalView.count - 1)
         for i in 0..<verticalView.count {
-            let ix = i * 70
-            verticalView[i].frame = CGRect(x: CGFloat(ix), y: 0, width: 0.5, height: self.bounds.height)
+            let ix = i * stepVert
+            verticalView[i].frame = CGRect(x: CGFloat(ix), y: 0, width: 0.5, height: height)
             verticalView[i].backgroundColor = .gray
             self.addSubview(verticalView[i])
         }
         
         //horizontal
         let horizontalView = [zeroHor, oneHor, twoHor, threeHor, fourHor, fiveHor]
-        
+        let stepHor = Int(height) / (horizontalView.count - 1)
         for i in 0..<horizontalView.count {
-            let iy = i * 60
-            horizontalView[i].frame = CGRect(x: 0, y: CGFloat(iy), width: self.bounds.width, height: 0.5)
+            let iy = i * stepHor
+            horizontalView[i].frame = CGRect(x: 0, y: CGFloat(iy), width: width, height: 0.5)
             horizontalView[i].backgroundColor = .gray
             self.addSubview(horizontalView[i])
         }
@@ -326,6 +336,8 @@ class Chart: UIView {
         var iy = 0
         
         let height = self.bounds.height
+        let width = self.bounds.width
+        let step = Int(width) / 5
         
         guard let incMax = arrayForIncome.max() else { return }
         guard let consMax = arrayForCome.max() else { return }
@@ -354,11 +366,11 @@ class Chart: UIView {
         }
         
         let zeroInc = CGPoint(x: 0, y: 300)
-        let oneInc = CGPoint(x: 70, y: Int(height) - arrayForFillIncome[0] / iy)
-        let twoInc = CGPoint(x: 140, y: Int(height) - arrayForFillIncome[1] / iy)
-        let threeInc = CGPoint(x: 210, y: Int(height) - arrayForFillIncome[2] / iy)
-        let fourInc = CGPoint(x: 280, y: Int(height) - arrayForFillIncome[3] / iy)
-        let fiveInc = CGPoint(x: 350, y: Int(height) - arrayForFillIncome[4] / iy)
+        let oneInc = CGPoint(x: step * 1, y: Int(height) - arrayForFillIncome[0] / iy)
+        let twoInc = CGPoint(x: step * 2, y: Int(height) - arrayForFillIncome[1] / iy)
+        let threeInc = CGPoint(x: step * 3, y: Int(height) - arrayForFillIncome[2] / iy)
+        let fourInc = CGPoint(x: step * 4, y: Int(height) - arrayForFillIncome[3] / iy)
+        let fiveInc = CGPoint(x: step * 5, y: Int(height) - arrayForFillIncome[4] / iy)
         
         let chartLineInc = UIBezierPath()
         chartLineInc.move(to: zeroInc)
@@ -386,11 +398,11 @@ class Chart: UIView {
         }
         
         let zeroCome = CGPoint(x: 0, y: 300)
-        let oneCome = CGPoint(x: 70, y: Int(height) - arrayForFillCome[0] / iy)
-        let twoCome = CGPoint(x: 140, y: Int(height) - arrayForFillCome[1] / iy)
-        let threeCome = CGPoint(x: 210, y: Int(height) - arrayForFillCome[2] / iy)
-        let fourCome = CGPoint(x: 280, y: Int(height) - arrayForFillCome[3] / iy)
-        let fiveCome = CGPoint(x: 350, y: Int(height) - arrayForFillCome[4] / iy)
+        let oneCome = CGPoint(x: step * 1, y: Int(height) - arrayForFillCome[0] / iy)
+        let twoCome = CGPoint(x: step * 2, y: Int(height) - arrayForFillCome[1] / iy)
+        let threeCome = CGPoint(x: step * 3, y: Int(height) - arrayForFillCome[2] / iy)
+        let fourCome = CGPoint(x: step * 4, y: Int(height) - arrayForFillCome[3] / iy)
+        let fiveCome = CGPoint(x: step * 5, y: Int(height) - arrayForFillCome[4] / iy)
         
         let chartLineCome = UIBezierPath()
         chartLineCome.move(to: zeroCome)
@@ -419,6 +431,10 @@ class Chart: UIView {
         var iy = 0
         
         let height = self.bounds.height
+        
+        let width = self.bounds.width
+        
+        let step = Int(width) / 7
                 
         guard let incMax = arrayForIncome.max() else { return }
         guard let consMax = arrayForCome.max() else { return }
@@ -451,13 +467,13 @@ class Chart: UIView {
         }
         
         let zeroInc = CGPoint(x: 0, y: Int(height) - arrayForFillIncome[7] / iy)
-        let firstInc = CGPoint(x: 50, y: Int(height) - arrayForFillIncome[6] / iy)
-        let secondInc = CGPoint(x: 100, y: Int(height) - arrayForFillIncome[5] / iy)
-        let thirdInc = CGPoint(x: 150, y: Int(height) - arrayForFillIncome[4] / iy)
-        let fourthInc = CGPoint(x: 200, y: Int(height) - arrayForFillIncome[3] / iy)
-        let fifthInc = CGPoint(x: 250, y: Int(height) - arrayForFillIncome[2] / iy)
-        let sixthInc = CGPoint(x: 300, y: Int(height) - arrayForFillIncome[1] / iy)
-        let seventhInc = CGPoint(x: 350, y: Int(height) - arrayForFillIncome[0] / iy)
+        let firstInc = CGPoint(x: step * 1, y: Int(height) - arrayForFillIncome[6] / iy)
+        let secondInc = CGPoint(x: step * 2, y: Int(height) - arrayForFillIncome[5] / iy)
+        let thirdInc = CGPoint(x: step * 3, y: Int(height) - arrayForFillIncome[4] / iy)
+        let fourthInc = CGPoint(x: step * 4, y: Int(height) - arrayForFillIncome[3] / iy)
+        let fifthInc = CGPoint(x: step * 5, y: Int(height) - arrayForFillIncome[2] / iy)
+        let sixthInc = CGPoint(x: step * 6, y: Int(height) - arrayForFillIncome[1] / iy)
+        let seventhInc = CGPoint(x: step * 7, y: Int(height) - arrayForFillIncome[0] / iy)
         
         let chartLineInc = UIBezierPath()
         
@@ -491,13 +507,13 @@ class Chart: UIView {
         }
         
         let zeroCons = CGPoint(x: 0, y: Int(height) - arrayForFillCome[7] / iy)
-        let firstCons = CGPoint(x: 50, y: Int(height) - arrayForFillCome[6] / iy)
-        let secondCons = CGPoint(x: 100, y: Int(height) - arrayForFillCome[5] / iy)
-        let thirdCons = CGPoint(x: 150, y: Int(height) - arrayForFillCome[4] / iy)
-        let fourthCons = CGPoint(x: 200, y: Int(height) - arrayForFillCome[3] / iy)
-        let fifthCons = CGPoint(x: 250, y: Int(height) - arrayForFillCome[2] / iy)
-        let sixthCons = CGPoint(x: 300, y: Int(height) - arrayForFillCome[1] / iy)
-        let seventhCons = CGPoint(x: 350, y: Int(height) - arrayForFillCome[0] / iy)
+        let firstCons = CGPoint(x: step * 1, y: Int(height) - arrayForFillCome[6] / iy)
+        let secondCons = CGPoint(x: step * 2, y: Int(height) - arrayForFillCome[5] / iy)
+        let thirdCons = CGPoint(x: step * 3, y: Int(height) - arrayForFillCome[4] / iy)
+        let fourthCons = CGPoint(x: step * 4, y: Int(height) - arrayForFillCome[3] / iy)
+        let fifthCons = CGPoint(x: step * 5, y: Int(height) - arrayForFillCome[2] / iy)
+        let sixthCons = CGPoint(x: step * 6, y: Int(height) - arrayForFillCome[1] / iy)
+        let seventhCons = CGPoint(x: step * 7, y: Int(height) - arrayForFillCome[0] / iy)
         
         let chartLineCons = UIBezierPath()
         
@@ -601,20 +617,24 @@ class Chart: UIView {
     }
     
     func updateBackgroundForWeek() {
+        let width = self.bounds.width
+        let height = self.bounds.height
         // vertical
         let viewsArray: [UIView] = [zero, one, two, three, four, five, six, seven]
+        let stepVert = Int(width) / (viewsArray.count - 1)
         for i in 0..<viewsArray.count {
-            let j = i * 50
-            viewsArray[i].frame = CGRect(x: CGFloat(j), y: 0, width: 0.5, height: self.bounds.height)
+            let j = i * stepVert
+            viewsArray[i].frame = CGRect(x: CGFloat(j), y: 0, width: 0.5, height: height)
             viewsArray[i].backgroundColor = .gray
             addSubview(viewsArray[i])
         }
         
         //horizontal
         let viewsHorizontalArray: [UIView] = [zeroHor, oneHor, twoHor, threeHor, fourHor, fiveHor, sixHor]
+        let stepHor = Int(height) / (viewsHorizontalArray.count - 1)
         for i in 0..<viewsHorizontalArray.count {
-            let j = i * 50
-            viewsHorizontalArray[i].frame = CGRect(x: 0, y: CGFloat(j), width: self.bounds.width, height: 0.5)
+            let j = i * stepHor
+            viewsHorizontalArray[i].frame = CGRect(x: 0, y: CGFloat(j), width: width, height: 0.5)
             viewsHorizontalArray[i].backgroundColor = .gray
             addSubview(viewsHorizontalArray[i])
         }
