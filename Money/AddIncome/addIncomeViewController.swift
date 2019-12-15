@@ -28,30 +28,35 @@ class addIncomeViewController: UIViewController {
         
         let consuptionRealm = persistanceConsumtion.category.realm
         consumtion = consuptionRealm.objects(CategoryConsumtion.self)
+        
+        otherButtonOutlet.setTitle("Расход⇩", for: .normal)
 
         plusOrMinus.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        if check == 2 {
+            check = 0
+        }
         colView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showVC" && check == 0{
+        if segue.identifier == "showVC" && check == 0 {
             if let vc = segue.destination as? IncomeViewController{
                 let select = sender as? CategoryIncome
                 vc.select = select
             }
         }
-        else if segue.identifier == "showVC" && check == 1{
+        else if segue.identifier == "showVC" && check == 1 {
             if let vc = segue.destination as? IncomeViewController {
                 let select = sender as? CategoryConsumtion
                 vc.consumtion = select
             }
         }
         else if segue.identifier == "addCategory" {
-            if let vc = segue.destination as? addCategoryViewController{
+            if let vc = segue.destination as? addCategoryViewController {
                 let select = sender as? Int
                 vc.proper = select ?? 0
             }
@@ -126,7 +131,7 @@ extension addIncomeViewController: UICollectionViewDataSource, UICollectionViewD
                 return colCel
             }
         }
-        else {
+        else if check == 1 {
             otherButtonOutlet.setTitle("Доход⇩", for: .normal)
             if indexPath.item < consumtion.count {
                 if edit == false {
@@ -149,6 +154,10 @@ extension addIncomeViewController: UICollectionViewDataSource, UICollectionViewD
             return colCel
             }
         }
+        else {
+            performSegue(withIdentifier: "swapVC", sender: Any?.self)
+            return colCel
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -162,12 +171,12 @@ extension addIncomeViewController: UICollectionViewDataSource, UICollectionViewD
                     alert(select: select)
                 }
             }
-            else{
+            else {
                 performSegue(withIdentifier: "addCategory", sender: check)
-            edit = false
+                edit = false
             }
         }
-        else {
+        else if check == 1 {
             if indexPath.row < consumtion.count {
                 let select = consumtion[indexPath.row]
                 if edit == false {

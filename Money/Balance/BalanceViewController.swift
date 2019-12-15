@@ -1,4 +1,3 @@
-//
 import UIKit
 import RealmSwift
 
@@ -24,9 +23,34 @@ class BalanceViewController: UIViewController {
     
     @IBAction func addWalletButton(_ sender: Any) {
         let walletAlert = UIAlertController(title: "Add wallet", message: "Enter name for new wallet", preferredStyle: .alert)
+        walletAlert.addTextField { (textField: UITextField!) in
+            textField.placeholder = "Введите имя кошелька"
+        }
+        
+        walletAlert.addTextField { (secondField: UITextField!) in
+            secondField.placeholder = "Баланс"
+        }
+        
         let actionAddWallet = UIAlertAction(title: "Save", style: .default) { (action) in
-            persistanceWallet.category.addValueToWallet(name: "New Wallet")
-            self.walletTable.reloadData()
+            if let textF = walletAlert.textFields?[0] {
+                let temp = textF.text
+                if temp != nil && temp != "" {
+                    if let secF = walletAlert.textFields?[1] {
+                        var mny = 0
+                        mny = Int(secF.text ?? "") ?? 0
+                        persistanceWallet.category.addValueToWallet(name: temp!, mny: mny)
+                        self.walletTable.reloadData()
+                    }
+                }
+                else {
+                    if let secF = walletAlert.textFields?[1] {
+                        var mny = 0
+                        mny = Int(secF.text ?? "") ?? 0
+                        persistanceWallet.category.addValueToWallet(name: "New Wallet", mny: mny)
+                        self.walletTable.reloadData()
+                    }
+                }
+            }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
         

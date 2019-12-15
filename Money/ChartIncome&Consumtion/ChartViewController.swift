@@ -5,6 +5,8 @@ class ChartViewController: UIViewController {
 
     @IBOutlet var mainView: UIView!
         
+    @IBOutlet weak var rightConst: NSLayoutConstraint!
+    
     var choosenSeg = 0
     
     var chart = Chart()
@@ -33,19 +35,20 @@ class ChartViewController: UIViewController {
         let calendar = Calendar.current
         let format = DateFormatter()
         format.dateFormat = "dd.MM"
-
-        let width = mainView.bounds.width - 44 - 20
+        
+        let width = mainView.bounds.width - rightConst.constant - 20
+        let height = Int(mainView.bounds.height / 2 + 152)
         let step = Int(width) / 7
-        let begin = 35
+        let begin = 55
 
-        dateLabel.frame = CGRect(x: begin, y: 600, width: 100, height: 25)
-        secondDateLabel.frame = CGRect(x: begin + (step * 1), y: 600, width: 200, height: 25)
-        thirdDateLabel.frame = CGRect(x: begin + (step * 2), y: 600, width: 200, height: 25)
-        fourthDateLabel.frame = CGRect(x: begin + (step * 3), y: 600, width: 200, height: 25)
-        fifthDateLabel.frame = CGRect(x: begin + (step * 4), y: 600, width: 200, height: 25)
-        sixthDateLabel.frame = CGRect(x: begin + (step * 5), y: 600, width: 200, height: 25)
-        seventhDateLabel.frame = CGRect(x: begin + (step * 6), y: 600, width: 200, height: 25)
-        eighthDateLabel.frame = CGRect(x: begin + (step * 7), y: 600, width: 200, height: 25)
+        dateLabel.frame = CGRect(x: begin, y: height, width: 100, height: 25)
+        secondDateLabel.frame = CGRect(x: begin + (step * 1), y: height, width: 200, height: 25)
+        thirdDateLabel.frame = CGRect(x: begin + (step * 2), y: height, width: 200, height: 25)
+        fourthDateLabel.frame = CGRect(x: begin + (step * 3), y: height, width: 200, height: 25)
+        fifthDateLabel.frame = CGRect(x: begin + (step * 4), y: height, width: 200, height: 25)
+        sixthDateLabel.frame = CGRect(x: begin + (step * 5), y: height, width: 200, height: 25)
+        seventhDateLabel.frame = CGRect(x: begin + (step * 6), y: height, width: 200, height: 25)
+        eighthDateLabel.frame = CGRect(x: begin + (step * 7), y: height, width: 200, height: 25)
 
         for (index, i) in [eighthDateLabel, seventhDateLabel, sixthDateLabel, fifthDateLabel, fourthDateLabel, thirdDateLabel,secondDateLabel,dateLabel].enumerated() {
 
@@ -66,21 +69,24 @@ class ChartViewController: UIViewController {
             choosenSeg = segmentedControl.selectedSegmentIndex
             viewForChart.smth = choosenSeg
             viewForChart.setNeedsDisplay()
+            
             let calendar = Calendar.current
             let format = DateFormatter()
             format.dateFormat = "dd.MM"
-            let width = viewForChart.bounds.width
-            let step = Int(width) / 7
-            let begin = 35
             
-            dateLabel.frame = CGRect(x: begin, y: 600, width: 100, height: 25)
-            secondDateLabel.frame = CGRect(x: begin + (step * 1), y: 600, width: 200, height: 25)
-            thirdDateLabel.frame = CGRect(x: begin + (step * 2), y: 600, width: 200, height: 25)
-            fourthDateLabel.frame = CGRect(x: begin + (step * 3), y: 600, width: 200, height: 25)
-            fifthDateLabel.frame = CGRect(x: begin + (step * 4), y: 600, width: 200, height: 25)
-            sixthDateLabel.frame = CGRect(x: begin + (step * 5), y: 600, width: 200, height: 25)
-            seventhDateLabel.frame = CGRect(x: begin + (step * 6), y: 600, width: 200, height: 25)
-            eighthDateLabel.frame = CGRect(x: begin + (step * 7), y: 600, width: 200, height: 25)
+            let width = mainView.bounds.width - rightConst.constant - 20
+            let height = Int(mainView.bounds.height / 2 + 152)
+            let step = Int(width) / 7
+            let begin = 55
+
+            dateLabel.frame = CGRect(x: begin, y: height, width: 100, height: 25)
+            secondDateLabel.frame = CGRect(x: begin + (step * 1), y: height, width: 200, height: 25)
+            thirdDateLabel.frame = CGRect(x: begin + (step * 2), y: height, width: 200, height: 25)
+            fourthDateLabel.frame = CGRect(x: begin + (step * 3), y: height, width: 200, height: 25)
+            fifthDateLabel.frame = CGRect(x: begin + (step * 4), y: height, width: 200, height: 25)
+            sixthDateLabel.frame = CGRect(x: begin + (step * 5), y: height, width: 200, height: 25)
+            seventhDateLabel.frame = CGRect(x: begin + (step * 6), y: height, width: 200, height: 25)
+            eighthDateLabel.frame = CGRect(x: begin + (step * 7), y: height, width: 200, height: 25)
         
             for (index, i) in [eighthDateLabel, seventhDateLabel, sixthDateLabel, fifthDateLabel, fourthDateLabel, thirdDateLabel, secondDateLabel,dateLabel].enumerated() {
             
@@ -97,15 +103,18 @@ class ChartViewController: UIViewController {
             choosenSeg = segmentedControl.selectedSegmentIndex
             viewForChart.smth = choosenSeg
             viewForChart.setNeedsDisplay()
+            
             let width = viewForChart.bounds.width
+            let height = Int(mainView.bounds.height / 2 + 152)
             let step = Int(width) / 5
-            let begin = 40
-            dateLabel.frame = CGRect(x: 25, y: 600, width: 200, height: 25)
-            secondDateLabel.frame = CGRect(x: begin + (step * 1), y: 600, width: 200, height: 25)
-            thirdDateLabel.frame = CGRect(x: begin + (step * 2), y: 600, width: 200, height: 25)
-            fourthDateLabel.frame = CGRect(x: begin + (step * 3), y: 600, width: 200, height: 25)
-            fifthDateLabel.frame = CGRect(x: begin + (step * 4), y: 600, width: 200, height: 25)
-            sixthDateLabel.frame = CGRect(x: begin + (step * 5), y: 600, width: 200, height: 25)
+            let begin = 65
+            
+            dateLabel.frame = CGRect(x: 50, y: height, width: 200, height: 25)
+            secondDateLabel.frame = CGRect(x: begin + (step * 1), y: height, width: 200, height: 25)
+            thirdDateLabel.frame = CGRect(x: begin + (step * 2), y: height, width: 200, height: 25)
+            fourthDateLabel.frame = CGRect(x: begin + (step * 3), y: height, width: 200, height: 25)
+            fifthDateLabel.frame = CGRect(x: begin + (step * 4), y: height, width: 200, height: 25)
+            sixthDateLabel.frame = CGRect(x: begin + (step * 5), y: height, width: 200, height: 25)
             
             sixthDateLabel.text = "5"
             fifthDateLabel.text = "4"
@@ -127,14 +136,17 @@ class ChartViewController: UIViewController {
             choosenSeg = segmentedControl.selectedSegmentIndex
             viewForChart.smth = choosenSeg
             viewForChart.setNeedsDisplay()
-            dateLabel.frame = CGRect(x: 25, y: 600, width: 100, height: 25)
+            
             let width = viewForChart.bounds.width
+            let height = Int(mainView.bounds.height / 2 + 152)
             let step = Int(width) / 4
-            let begin = 43
-            secondDateLabel.frame = CGRect(x: begin + step * 1, y: 600, width: 100, height: 25)
-            thirdDateLabel.frame = CGRect(x: begin + step * 2, y: 600, width: 100, height: 25)
-            fourthDateLabel.frame = CGRect(x: begin + step * 3, y: 600, width: 100, height: 25)
-            fifthDateLabel.frame = CGRect(x: begin + step * 4, y: 600, width: 100, height: 25)
+            let begin = 67
+            
+            dateLabel.frame = CGRect(x: 50, y: height, width: 100, height: 25)
+            secondDateLabel.frame = CGRect(x: begin + (step * 1), y: height, width: 100, height: 25)
+            thirdDateLabel.frame = CGRect(x: begin + (step * 2), y: height, width: 100, height: 25)
+            fourthDateLabel.frame = CGRect(x: begin + (step * 3), y: height, width: 100, height: 25)
+            fifthDateLabel.frame = CGRect(x: begin + (step * 4), y: height, width: 100, height: 25)
             
             fifthDateLabel.text = "4"
             fourthDateLabel.text = "3"
@@ -152,17 +164,20 @@ class ChartViewController: UIViewController {
             let calendar = Calendar.current
             let format = DateFormatter()
             format.dateFormat = "MM"
-            let width = viewForChart.bounds.width
+            
+            let width = mainView.bounds.width - rightConst.constant - 20
+            let height = Int(mainView.bounds.height / 2 + 152)
             let step = Int(width) / 7
-            let begin = 40
-            dateLabel.frame = CGRect(x: begin, y: 600, width: 100, height: 25)
-            secondDateLabel.frame = CGRect(x: begin + step * 1, y: 600, width: 200, height: 25)
-            thirdDateLabel.frame = CGRect(x: begin + step * 2, y: 600, width: 200, height: 25)
-            fourthDateLabel.frame = CGRect(x: begin + step * 3, y: 600, width: 200, height: 25)
-            fifthDateLabel.frame = CGRect(x: begin + step * 4, y: 600, width: 200, height: 25)
-            sixthDateLabel.frame = CGRect(x: begin + step * 5, y: 600, width: 200, height: 25)
-            seventhDateLabel.frame = CGRect(x: begin + step * 6, y: 600, width: 200, height: 25)
-            eighthDateLabel.frame = CGRect(x: begin + step * 7, y: 600, width: 200, height: 25)
+            let begin = 63
+            
+            dateLabel.frame = CGRect(x: begin, y: height, width: 100, height: 25)
+            secondDateLabel.frame = CGRect(x: begin + (step * 1), y: height, width: 200, height: 25)
+            thirdDateLabel.frame = CGRect(x: begin + (step * 2), y: height, width: 200, height: 25)
+            fourthDateLabel.frame = CGRect(x: begin + (step * 3), y: height, width: 200, height: 25)
+            fifthDateLabel.frame = CGRect(x: begin + (step * 4), y: height, width: 200, height: 25)
+            sixthDateLabel.frame = CGRect(x: begin + (step * 5), y: height, width: 200, height: 25)
+            seventhDateLabel.frame = CGRect(x: begin + (step * 6), y: height, width: 200, height: 25)
+            eighthDateLabel.frame = CGRect(x: begin + (step * 7), y: height, width: 200, height: 25)
             
             for (index, i) in [eighthDateLabel, seventhDateLabel, sixthDateLabel, fifthDateLabel, fourthDateLabel, thirdDateLabel,secondDateLabel,dateLabel].enumerated() {
             

@@ -31,10 +31,12 @@ class IncomeViewController: UIViewController {
             imageView.image = UIImage(named: consumtion?.consumtionImage ?? "")
         }
         if wallet != nil {
+            walletLabel.textColor = .black
             walletLabel.text = wallet?.name
         }
         else {
             walletLabel.text = "Выберите кошелек"
+            walletLabel.textColor = .lightGray
         }
         priceLabel.layer.borderWidth = 0.5
         priceLabel.layer.borderColor = (UIColor.black).cgColor
@@ -69,6 +71,17 @@ class IncomeViewController: UIViewController {
                 persistanceWallet.category.plusValue(consumtion: numbers, obj: wallet!)
                 _ = navigationController?.popToRootViewController(animated: true)
             }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if wallet != nil {
+            walletLabel.textColor = .black
+            walletLabel.text = wallet?.name
+        }
+        else {
+            walletLabel.text = "Выберите кошелек"
+            walletLabel.textColor = .lightGray
         }
     }
 }

@@ -50,9 +50,14 @@ class persistanceWallet: MainViewController {
         }
     }
     
-    func addValueToWallet(name: String) {
+    func addValueToWallet(name: String, mny: Int?) {
         let variable = Wallet()
         variable.name = name
+        if mny != nil {
+            variable.money = mny!
+        } else {
+            variable.money = 0
+        }
         try! realm.write {
             realm.add(variable)
         }
@@ -61,6 +66,13 @@ class persistanceWallet: MainViewController {
     func deleteWallet(obj: Wallet) {
         try! realm.write {
             realm.delete(obj)
+        }
+    }
+    
+    func swapMoney(from: Wallet, to: Wallet, mny: Int) {
+        try! realm.write {
+            from.money -= mny
+            to.money += mny
         }
     }
 }

@@ -59,14 +59,14 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
             cell.priceOfCost.text = realmsClass[indexPath.section].categorysName
             cell.costImage.image = UIImage(named: realmsClass[indexPath.section].categorysImage ?? "")
             cell.moneyLabel.text = "\(realmsClass[indexPath.section].check[indexPath.row].suma)"
-            cell.moneyLabel.backgroundColor = .yellow
+            cell.moneyLabel.textColor = .red
         }
         else {
             count = indexPath.section - realmsClass.count
             cell.priceOfCost.text = consumtionRealmClass[count].consumtionName
             cell.costImage.image = UIImage(named: consumtionRealmClass[count].consumtionImage ?? "")
             cell.moneyLabel.text = "\(consumtionRealmClass[count].money[indexPath.row].sumaConsumtion)"
-            cell.moneyLabel.backgroundColor = .red
+            cell.moneyLabel.textColor = .blue
         }
         cell.layer.borderWidth = 0.3
         cell.layer.borderColor = UIColor.black.cgColor

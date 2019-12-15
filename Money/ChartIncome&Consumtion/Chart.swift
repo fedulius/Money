@@ -99,14 +99,14 @@ class Chart: UIView {
         guard let incMax = arrayForFillIncome.max() else { return }
         guard let consMax = arrayForFillCome.max() else { return }
         
-        if incMax > consMax {
+        if incMax > consMax || incMax == consMax && incMax != 0 {
             iy = incMax / Int(height)
         }
-        else if consMax > incMax {
+        else if consMax > incMax && consMax != 0{
             iy = consMax / Int(height)
         }
         else {
-            iy = incMax / Int(height)
+            iy = 1
         }
         
         let zeroInc = CGPoint(x: 0, y: Int(height) - arrayForFillIncome[7] / iy)
@@ -218,7 +218,7 @@ class Chart: UIView {
             }
         }
         
-        var iy = 0
+        var iy = 1
         
         let height = self.bounds.height
         let width = self.bounds.width
@@ -227,16 +227,16 @@ class Chart: UIView {
         guard let incMax = arrayForFillIncome.max() else { return }
         guard let consMax = arrayForFillCome.max() else { return }
         
-        if incMax > consMax {
+        if incMax > consMax || incMax == consMax && incMax != 0 {
             iy = incMax / Int(height)
         }
-        else if consMax > incMax {
+        else if consMax > incMax && consMax != 0 {
             iy = consMax / Int(height)
         }
         else {
-            iy = incMax / Int(height)
+            iy = 1
         }
-        
+                
         let zeroInc = CGPoint(x: 0, y: 300)
         let oneInc = CGPoint(x: step * 1, y: Int(height) - arrayForFillIncome[0] / iy)
         let twoInc = CGPoint(x: step * 2, y: Int(height) - arrayForFillIncome[1] / iy)
@@ -338,19 +338,6 @@ class Chart: UIView {
         let height = self.bounds.height
         let width = self.bounds.width
         let step = Int(width) / 5
-        
-        guard let incMax = arrayForIncome.max() else { return }
-        guard let consMax = arrayForCome.max() else { return }
-        
-        if incMax > consMax {
-            iy = incMax / Int(height)
-        }
-        else if consMax > incMax {
-            iy = consMax / Int(height)
-        }
-        else {
-            iy = incMax / Int(height)
-        }
                         
         for i in 0..<count {
             var variable = 0
@@ -363,6 +350,32 @@ class Chart: UIView {
                 }
             }
             arrayForFillIncome.append(variable)
+        }
+        
+        for i in 0..<count {
+            var variable = 0
+            var component = calendar.dateComponents([.year, .month, .weekOfMonth], from: firstDate!)
+            component.weekOfMonth! += i
+            for j in 0..<comeDateArray.count {
+                let checlDate = calendar.dateComponents([.year, .month, .weekOfMonth], from: comeDateArray[j])
+                if checlDate == component {
+                    variable += arrayForCome[j]
+                }
+            }
+            arrayForFillCome.append(variable)
+        }
+        
+        guard let incMax = arrayForFillIncome.max() else { return }
+        guard let consMax = arrayForFillCome.max() else { return }
+        
+        if incMax > consMax || incMax == consMax && incMax != 0 {
+            iy = incMax / Int(height)
+        }
+        else if consMax > incMax && consMax != 0 {
+            iy = consMax / Int(height)
+        }
+        else {
+            iy = 1
         }
         
         let zeroInc = CGPoint(x: 0, y: 300)
@@ -383,19 +396,6 @@ class Chart: UIView {
         
         chartLineInc.lineWidth = 2.0
         chartLineInc.stroke()
-        
-        for i in 0..<count {
-            var variable = 0
-            var component = calendar.dateComponents([.year, .month, .weekOfMonth], from: firstDate!)
-            component.weekOfMonth! += i
-            for j in 0..<comeDateArray.count {
-                let checlDate = calendar.dateComponents([.year, .month, .weekOfMonth], from: comeDateArray[j])
-                if checlDate == component {
-                    variable += arrayForCome[j]
-                }
-            }
-            arrayForFillCome.append(variable)
-        }
         
         let zeroCome = CGPoint(x: 0, y: 300)
         let oneCome = CGPoint(x: step * 1, y: Int(height) - arrayForFillCome[0] / iy)
@@ -436,19 +436,6 @@ class Chart: UIView {
         
         let step = Int(width) / 7
                 
-        guard let incMax = arrayForIncome.max() else { return }
-        guard let consMax = arrayForCome.max() else { return }
-        
-        if incMax > consMax {
-            iy = incMax / Int(height)
-        }
-        else if consMax > incMax {
-            iy = consMax / Int(height)
-        }
-        else {
-            iy = incMax / Int(height)
-        }
-        
         var secondCount = 0
         
         for i in 0..<8 {
@@ -466,31 +453,7 @@ class Chart: UIView {
             }
         }
         
-        let zeroInc = CGPoint(x: 0, y: Int(height) - arrayForFillIncome[7] / iy)
-        let firstInc = CGPoint(x: step * 1, y: Int(height) - arrayForFillIncome[6] / iy)
-        let secondInc = CGPoint(x: step * 2, y: Int(height) - arrayForFillIncome[5] / iy)
-        let thirdInc = CGPoint(x: step * 3, y: Int(height) - arrayForFillIncome[4] / iy)
-        let fourthInc = CGPoint(x: step * 4, y: Int(height) - arrayForFillIncome[3] / iy)
-        let fifthInc = CGPoint(x: step * 5, y: Int(height) - arrayForFillIncome[2] / iy)
-        let sixthInc = CGPoint(x: step * 6, y: Int(height) - arrayForFillIncome[1] / iy)
-        let seventhInc = CGPoint(x: step * 7, y: Int(height) - arrayForFillIncome[0] / iy)
-        
-        let chartLineInc = UIBezierPath()
-        
-        chartLineInc.move(to: zeroInc)
-        
-        for i in [firstInc, secondInc, thirdInc, fourthInc, fifthInc, sixthInc, seventhInc] {
-            
-            chartLineInc.addLine(to: i)
-        }
-        
-        let colorInc = UIColor.red
-        colorInc.setStroke()
-        
-        chartLineInc.lineWidth = 2.0
-        chartLineInc.stroke()
         var count = 0
-        
         for i in 0..<8 {
             var component = calendar.dateComponents([.year, .month, .day], from: date)
             component.day! -= i
@@ -505,6 +468,44 @@ class Chart: UIView {
                 arrayForFillCome.append(0)
             }
         }
+        
+        guard let incMax = arrayForFillIncome.max() else { return }
+        guard let consMax = arrayForFillCome.max() else { return }
+        
+       if incMax > consMax || incMax == consMax && incMax != 0 {
+            iy = incMax / Int(height)
+        }
+        else if consMax > incMax && consMax != 0 {
+            iy = consMax / Int(height)
+        }
+        else {
+            iy = 1
+        }
+        
+        let zeroInc = CGPoint(x: 0, y: Int(height) - arrayForFillIncome[7] / iy)
+        let firstInc = CGPoint(x: step * 1, y: Int(height) - arrayForFillIncome[6] / iy)
+        let secondInc = CGPoint(x: step * 2, y: Int(height) - arrayForFillIncome[5] / iy)
+        let thirdInc = CGPoint(x: step * 3, y: Int(height) - arrayForFillIncome[4] / iy)
+        let fourthInc = CGPoint(x: step * 4, y: Int(height) - arrayForFillIncome[3] / iy)
+        let fifthInc = CGPoint(x: step * 5, y: Int(height) - arrayForFillIncome[2] / iy)
+        let sixthInc = CGPoint(x: step * 6, y: Int(height) - arrayForFillIncome[1] / iy)
+        let seventhInc = CGPoint(x: step * 7, y: Int(height) - arrayForFillIncome[0] / iy)
+        
+        let chartLineInc = UIBezierPath()
+        
+        chartLineInc.move(to: zeroInc)
+        
+        for i in [firstInc, secondInc, thirdInc, fourthInc, fifthInc, sixthInc, seventhInc] {
+            chartLineInc.addLine(to: i)
+        }
+        
+        let colorInc = UIColor.red
+        colorInc.setStroke()
+        
+        chartLineInc.lineWidth = 2.0
+        chartLineInc.stroke()
+        
+        
         
         let zeroCons = CGPoint(x: 0, y: Int(height) - arrayForFillCome[7] / iy)
         let firstCons = CGPoint(x: step * 1, y: Int(height) - arrayForFillCome[6] / iy)

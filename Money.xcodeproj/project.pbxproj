@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		330812EB233BF3CC0086977E /* CategoryIncome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330812EA233BF3CC0086977E /* CategoryIncome.swift */; };
 		330812ED233CCE250086977E /* IncomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330812EC233CCE250086977E /* IncomeViewController.swift */; };
+		33193E0123A29A0C0023DF2E /* SwapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33193E0023A29A0C0023DF2E /* SwapViewController.swift */; };
 		331ED880234BA0D900F764AF /* PlusOrMinus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331ED87F234BA0D900F764AF /* PlusOrMinus.swift */; };
 		331ED884234BA7C700F764AF /* CellId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331ED883234BA7C700F764AF /* CellId.swift */; };
 		331ED886234BA81600F764AF /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331ED885234BA81600F764AF /* BaseCell.swift */; };
@@ -34,6 +35,7 @@
 		2D8C6E6CF7A313D464B5CF11 /* Pods-Money.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Money.debug.xcconfig"; path = "Target Support Files/Pods-Money/Pods-Money.debug.xcconfig"; sourceTree = "<group>"; };
 		330812EA233BF3CC0086977E /* CategoryIncome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryIncome.swift; sourceTree = "<group>"; };
 		330812EC233CCE250086977E /* IncomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeViewController.swift; sourceTree = "<group>"; };
+		33193E0023A29A0C0023DF2E /* SwapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapViewController.swift; sourceTree = "<group>"; };
 		331ED87F234BA0D900F764AF /* PlusOrMinus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusOrMinus.swift; sourceTree = "<group>"; };
 		331ED883234BA7C700F764AF /* CellId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellId.swift; sourceTree = "<group>"; };
 		331ED885234BA81600F764AF /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
@@ -70,6 +72,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		33193DFF23A299F00023DF2E /* SwapVC */ = {
+			isa = PBXGroup;
+			children = (
+				33193E0023A29A0C0023DF2E /* SwapViewController.swift */,
+			);
+			path = SwapVC;
+			sourceTree = "<group>";
+		};
 		336F4B7B233258DD00EF3DC4 = {
 			isa = PBXGroup;
 			children = (
@@ -91,12 +101,13 @@
 		336F4B86233258DD00EF3DC4 /* Money */ = {
 			isa = PBXGroup;
 			children = (
-				33BFCFC723575542001CD70A /* ChartIncome&Consumtion */,
 				336F4B87233258DD00EF3DC4 /* AppDelegate.swift */,
 				330812EA233BF3CC0086977E /* CategoryIncome.swift */,
 				330812EC233CCE250086977E /* IncomeViewController.swift */,
 				33EE0F622343B094008F1124 /* addCategoryViewController.swift */,
 				331ED885234BA81600F764AF /* BaseCell.swift */,
+				33BFCFC723575542001CD70A /* ChartIncome&Consumtion */,
+				33193DFF23A299F00023DF2E /* SwapVC */,
 				339388F52354CCC300349C83 /* WalletsTable */,
 				33B6E1322350FA5400738D50 /* Balance */,
 				33FFB701233B833200C2454C /* MainView */,
@@ -331,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33EE0F632343B094008F1124 /* addCategoryViewController.swift in Sources */,
+				33193E0123A29A0C0023DF2E /* SwapViewController.swift in Sources */,
 				336F4BA02333DB9100EF3DC4 /* addIncomeCollectionViewCell.swift in Sources */,
 				336F4B8A233258DD00EF3DC4 /* MainViewController.swift in Sources */,
 				33B6E1342350FA7E00738D50 /* BalanceViewController.swift in Sources */,
